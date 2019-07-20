@@ -1,0 +1,14 @@
+version: '3.4'
+services:
+  app:
+    build:
+      context: Dockerfile.d/
+      dockerfile: app.Dockerfile
+      target: development
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+      - $HOME/.ssh:/root/.ssh:ro
+    ports:
+      - '${BIND_IP_ADDR:-127.0.0.1}:3000:3000'
+    command: sleep infinity

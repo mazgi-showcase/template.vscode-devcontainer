@@ -1,0 +1,8 @@
+version: '3.4'
+services:
+  app:
+    volumes:
+      - vscode-server:/root/.vscode-server
+volumes:
+  vscode-server:
+    driver: local
