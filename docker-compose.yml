@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.7'
 services:
   app:
     build:
@@ -8,7 +8,10 @@ services:
     working_dir: /workspace
     volumes:
       - .:/workspace
-      - $HOME/.ssh:/root/.ssh:ro
+      - ${SSH_AUTH_SOCK}:${SSH_AUTH_SOCK}
     ports:
       - '${BIND_IP_ADDR:-127.0.0.1}:3000:3000'
+    user: '${UID:-0}:${GID:-0}'
+    environment:
+      - SSH_AUTH_SOCK
     command: sleep infinity
